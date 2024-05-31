@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>显示字符</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-size: 2rem;
+            font-family: Arial, sans-serif;
+        }
+        .char {
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .char.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="text"></div>
+    <script>
+        const text = "董泽业！我是你爹！";
+        const textContainer = document.getElementById("text");
+
+        // Create span elements for each character
+        for (let i = 0; i < text.length; i++) {
+            const span = document.createElement("span");
+            span.classList.add("char");
+            span.textContent = text[i];
+            textContainer.appendChild(span);
+        }
+
+        // Function to display characters one by one
+        function displayCharacters() {
+            const chars = document.querySelectorAll(".char");
+            chars.forEach((char, index) => {
+                setTimeout(() => {
+                    char.classList.add("visible");
+                }, index * 500); // Adjust the timing as needed
+            });
+        }
+
+        // Call the function to start displaying characters
+        displayCharacters();
+    </script>
+</body>
+</html>
